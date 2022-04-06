@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+.btn {
+  background-color: #171d20;
+  border: none;
+  color: #bde6fb;
+  padding: 1px 1px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+body {
+  background-color: #171d20;
+}
+
+h1 {
+  color: #bde6fb;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+p {
+  color: #bde6fb;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+}
+
+h1.italic {
+  font-style: italic;
+  color: #bde6fb;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+}
+
+h1.title {
+  font-style: Bold;
+  color: #bde6fb;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 90px;
+}
+
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #bde6fb;
+  border: none;
+  color: #171d20;
+  text-align: center;
+  font-size: 20px;
+  padding: 20px;
+  width: 225px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 20px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #1e2529;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+.center p {
+  line-height: 1.5;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.header {
+  padding: 1px;
+  text-align: center;
+  background: #1e2529;
+  color: white;
+  font-size: 20px;
+}
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #1e2529;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #d2f3ff;
+  display: block;
+  transition: 0.3s;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.sidebar a:hover {
+  color: #8dd4f8;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 10px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
+.btn:hover {
+  color: #8dd4f8;
+}
+
+div.animated {
+  position: relative;
+  animation: mymove 1s;
+}
+
+@keyframes mymove {
+  from {bottom: 40px;}
+  to {bottom: 0px;}
+}
+
+.center {
+  line-height: 100px;
+  height: 100px;
+  text-align: center;
+  position: relative;
+  animation: mymove 1s;
+}
+
+a.hide:link, a.hide:visited {
+  color: #171d20;
+  background-color: #171d20;
+}
+
+</style>
+</head>
+<body>
+<div class="header">
+  <p>Blue v1.1 has been released! Enjoy the cleaned up interface.</p>
+</div>
+<button class="btn" onclick="openNav()"><i class="fa fa-cog"></i></button>
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="/">Home</a>
+  <a href="#" onclick="disabledFunction()">Options</a>
+  <a href="#" onclick="disabledFunction()">Pricing</a>
+  <a href="#" onclick="disabledFunction()">Setup</a>
+  <a href="#" onclick="disabledFunction()">Support</a>
+  <a href="/credits">Credits</a>
+</div>
+<div class=animated>
+<h1 class="title">Blue</h1>
+<h1 class="italic">Welcome back!</h1>
+<h1 class="italic">You have ∞ days left in your subscription.</h1>
+<h1> </h1>
+</div>
+<div id="snackbar">Error: Temporarily Disabled</div>
+<script>
+function disabledFunction() {
+  var x = document.getElementById("snackbar");
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+</script>
+<div class="center">
+  <a class="hide" href="/uvnav">
+  <button class="button" style="vertical-align:middle" href="/uv"><span>Open Ultraviolet </span></button>
+  </a>
+  <button class="button" style="vertical-align:middle" onclick="disabledFunction()"><span>Open Womginx </span>
+</button>
+  <button class="button" style="vertical-align:middle" onclick="disabledFunction()"><span>Open Spotify </span></button>
+</div>
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</body>
+</html>
